@@ -59,21 +59,21 @@ flowchart TD
     Signup --> |완료| Login
     FindAccount --> |완료| Login
 
-    MainTabs{메인 화면<br/>탭바} --> HomeTab[홈 탭]
+    MainTabs{"메인 화면<br/>탭바"} --> HomeTab[홈 탭]
     MainTabs --> SearchTab[검색 탭]
     MainTabs --> WishlistTab[위시리스트 탭]
     MainTabs --> ProfileTab[프로필 탭]
 
     %% 홈 탭 플로우
-    HomeTab --> ReadingBooks{읽고 있는 책<br/>있음?}
+    HomeTab --> ReadingBooks{"읽고 있는 책<br/>있음?"}
     ReadingBooks --> |없음| AddBook[등록 버튼]
     ReadingBooks --> |있음| ReadingRecord[독서 기록 화면]
 
     AddBook --> BookSearch
 
-    ReadingRecord --> RecordType{현재 페이지 =<br/>마지막 페이지?}
+    ReadingRecord --> RecordType{"현재 페이지 =<br/>마지막 페이지?"}
     RecordType --> |진행 중| NormalRecord[일반 기록 저장]
-    RecordType --> |완독| CompleteRecord[완독 기록<br/>평점/감상]
+    RecordType --> |완독| CompleteRecord["완독 기록<br/>평점/감상"]
 
     NormalRecord --> HomeTab
     CompleteRecord --> Congrats[축하 메시지]
@@ -82,12 +82,12 @@ flowchart TD
     HomeTab --> FinishedBooks[다 읽은 책]
     FinishedBooks --> FinishedList[다 읽은 책 리스트]
     FinishedList --> RecordDetail[독서 기록 상세]
-    RecordDetail --> RecordActions[보기/수정/삭제<br/>다시읽기/공유]
+    RecordDetail --> RecordActions["보기/수정/삭제<br/>다시읽기/공유"]
 
     %% 검색 탭 플로우
     SearchTab --> SearchState{검색 상태}
     SearchState --> |검색 전| BeforeSearch[인기/추천 책 표시]
-    SearchState --> |검색| BookSearch[책 검색<br/>텍스트/바코드]
+    SearchState --> |검색| BookSearch["책 검색<br/>텍스트/바코드"]
 
     BookSearch --> SearchResult[검색 결과 리스트]
     SearchResult --> BookDetail[책 상세 정보]
@@ -100,8 +100,8 @@ flowchart TD
     AddWishlist --> WishlistTab
 
     %% 위시리스트 탭 플로우
-    WishlistTab --> WishlistState{위시리스트<br/>있음?}
-    WishlistState --> |없음| EmptyWishlist[빈 상태<br/>검색 안내]
+    WishlistTab --> WishlistState{"위시리스트<br/>있음?"}
+    WishlistState --> |없음| EmptyWishlist["빈 상태<br/>검색 안내"]
     WishlistState --> |있음| WishlistBooks[위시리스트 목록]
 
     EmptyWishlist --> SearchTab
@@ -109,9 +109,9 @@ flowchart TD
 
     %% 프로필 탭 플로우
     ProfileTab --> ProfileMenu{메뉴 선택}
-    ProfileMenu --> ProfileInfo[사용자 정보<br/>프로필 편집]
+    ProfileMenu --> ProfileInfo["사용자 정보<br/>프로필 편집"]
     ProfileMenu --> ReadingStats[독서 통계]
-    ProfileMenu --> Settings[설정<br/>알림/테마/계정]
+    ProfileMenu --> Settings["설정<br/>알림/테마/계정"]
     ProfileMenu --> Logout[로그아웃]
 
     Logout --> Login
@@ -148,7 +148,7 @@ flowchart TD
     ValidateLogin --> |실패| LoginError[에러 메시지]
     LoginError --> Login
 
-    Signup --> |정보 입력| SignupForm[회원가입 폼<br/>이메일/비밀번호/닉네임]
+    Signup --> |정보 입력| SignupForm["회원가입 폼<br/>이메일/비밀번호/닉네임"]
     SignupForm --> |가입하기| ValidateSignup{유효성 검사}
     ValidateSignup --> |성공| SignupSuccess[가입 완료]
     ValidateSignup --> |실패| SignupError[에러 메시지]
@@ -178,9 +178,9 @@ flowchart TD
     HomeTab([홈 탭]) --> ReadingSection[읽고 있는 책 섹션]
     HomeTab --> FinishedSection[다 읽은 책 섹션]
 
-    ReadingSection --> HasReading{책이<br/>있음?}
+    ReadingSection --> HasReading{"책이<br/>있음?"}
     HasReading --> |없음| NoReading[등록 버튼 표시]
-    HasReading --> |있음| ShowReading[책 정보 표시<br/>표지/제목/진행률]
+    HasReading --> |있음| ShowReading["책 정보 표시<br/>표지/제목/진행률"]
 
     NoReading --> |클릭| GoSearch[검색 화면으로 이동]
     ShowReading --> |클릭| ReadingRecord[독서 기록 화면]
@@ -188,7 +188,7 @@ flowchart TD
     ReadingRecord --> CurrentPage[현재 페이지 입력]
     ReadingRecord --> Memo[메모 작성]
 
-    CurrentPage --> CheckComplete{현재 페이지 =<br/>마지막 페이지?}
+    CurrentPage --> CheckComplete{"현재 페이지 =<br/>마지막 페이지?"}
     CheckComplete --> |아니오| SaveNormal[일반 기록 저장]
     CheckComplete --> |예| CompleteFlow[완독 플로우]
 
@@ -196,7 +196,7 @@ flowchart TD
     UpdateHome --> HomeTab
 
     CompleteFlow --> CompleteRecord[완독 기록 화면]
-    CompleteRecord --> Rating[평점 입력<br/>1-5점]
+    CompleteRecord --> Rating["평점 입력<br/>1-5점"]
     CompleteRecord --> StartDate[독서 시작일]
     CompleteRecord --> EndDate[독서 완료일]
     CompleteRecord --> Review[감상평 작성]
@@ -206,19 +206,19 @@ flowchart TD
     EndDate --> SaveComplete
     Review --> SaveComplete
 
-    SaveComplete --> Congrats[축하 메시지<br/>애니메이션]
+    SaveComplete --> Congrats["축하 메시지<br/>애니메이션"]
     Congrats --> MoveToFinished[다 읽은 책으로 이동]
     MoveToFinished --> HomeTab
 
-    FinishedSection --> ShowPreview[미리보기<br/>4-5권 표시]
-    ShowPreview --> |전체 보기 클릭| FinishedList[다 읽은 책<br/>전체 리스트]
+    FinishedSection --> ShowPreview["미리보기<br/>4-5권 표시"]
+    ShowPreview --> |전체 보기 클릭| FinishedList["다 읽은 책<br/>전체 리스트"]
     ShowPreview --> |책 클릭| RecordDetail
 
     FinishedList --> |책 클릭| RecordDetail[독서 기록 상세]
 
     RecordDetail --> ShowInfo[책 정보 표시]
     RecordDetail --> ShowRating[평점/감상평]
-    RecordDetail --> ShowRecords[독서 기록 목록<br/>시간순 정렬]
+    RecordDetail --> ShowRecords["독서 기록 목록<br/>시간순 정렬"]
 
     ShowRecords --> RecordActions{액션 선택}
     RecordActions --> |수정| EditRecord[기록 수정]
@@ -243,21 +243,21 @@ flowchart TD
     SearchTab([검색 탭]) --> SearchBar[검색 바]
     SearchTab --> InitialView[초기 화면]
 
-    InitialView --> PopularBooks[인기 책 목록<br/>가로 스크롤]
-    InitialView --> RecommendBooks[추천 책 목록<br/>리스트 형태]
+    InitialView --> PopularBooks["인기 책 목록<br/>가로 스크롤"]
+    InitialView --> RecommendBooks["추천 책 목록<br/>리스트 형태"]
 
     PopularBooks --> |책 클릭| BookDetail
     RecommendBooks --> |책 클릭| BookDetail
 
     SearchBar --> SearchMethod{검색 방법}
-    SearchMethod --> |텍스트| TextSearch[텍스트 입력<br/>제목/저자/ISBN]
-    SearchMethod --> |바코드| BarcodeSearch[카메라 실행<br/>바코드 스캔]
+    SearchMethod --> |텍스트| TextSearch["텍스트 입력<br/>제목/저자/ISBN"]
+    SearchMethod --> |바코드| BarcodeSearch["카메라 실행<br/>바코드 스캔"]
 
     TextSearch --> |검색 버튼| DoSearch[API 검색 실행]
     BarcodeSearch --> |스캔 완료| DoSearch
 
-    DoSearch --> HasResult{검색 결과<br/>있음?}
-    HasResult --> |있음| SearchResult[검색 결과 리스트<br/>책 목록 표시]
+    DoSearch --> HasResult{"검색 결과<br/>있음?"}
+    HasResult --> |있음| SearchResult["검색 결과 리스트<br/>책 목록 표시"]
     HasResult --> |없음| NoResult[결과 없음 메시지]
 
     NoResult --> SearchTab
@@ -294,13 +294,13 @@ flowchart TD
 
                 <pre id="chart-wishlist" class="mermaid mermaid-chart">
 flowchart TD
-    WishlistTab([위시리스트 탭]) --> CheckList{리스트<br/>있음?}
+    WishlistTab([위시리스트 탭]) --> CheckList{"리스트<br/>있음?"}
 
     CheckList --> |없음| EmptyState[빈 상태 화면]
     CheckList --> |있음| WishlistView[위시리스트 화면]
 
-    EmptyState --> EmptyIcon[빈 아이콘 표시<br/>⭐]
-    EmptyState --> EmptyMessage[안내 메시지<br/>'읽고 싶은 책을<br/>추가해보세요']
+    EmptyState --> EmptyIcon["빈 아이콘 표시<br/>⭐"]
+    EmptyState --> EmptyMessage["안내 메시지: 읽고 싶은 책을 추가해보세요"]
     EmptyState --> SearchButton[책 검색하기 버튼]
 
     SearchButton --> GoSearch[검색 탭으로 이동]
@@ -309,7 +309,7 @@ flowchart TD
     WishlistView --> BookList[책 리스트]
 
     BookList --> BookCard[책 카드]
-    BookCard --> CardInfo[책 정보<br/>표지/제목/저자/페이지수]
+    BookCard --> CardInfo["책 정보<br/>표지/제목/저자/페이지수"]
 
     BookCard --> |클릭| BookDetail[책 상세 정보]
 
@@ -354,10 +354,10 @@ flowchart TD
     SaveProfile --> ProfileTab
 
     StatsSection --> StatsGrid[통계 그리드]
-    StatsGrid --> YearBooks[올해 읽은 책<br/>개수]
-    StatsGrid --> TotalBooks[총 독서량<br/>누적 개수]
-    StatsGrid --> AvgTime[평균 독서 시간<br/>시간]
-    StatsGrid --> AvgRating[평균 평점<br/>별점]
+    StatsGrid --> YearBooks["올해 읽은 책<br/>개수"]
+    StatsGrid --> TotalBooks["총 독서량<br/>누적 개수"]
+    StatsGrid --> AvgTime["평균 독서 시간<br/>시간"]
+    StatsGrid --> AvgRating["평균 평점<br/>별점"]
 
     MenuSection --> ProfileMenu[프로필 편집]
     MenuSection --> SettingsMenu[설정]
@@ -370,11 +370,11 @@ flowchart TD
     Settings --> DisplaySettings[화면 설정]
     Settings --> AccountSettings[계정 설정]
 
-    NotificationSettings --> ReadingReminder[독서 리마인더<br/>토글]
-    NotificationSettings --> GoalAlert[목표 달성 알림<br/>토글]
+    NotificationSettings --> ReadingReminder["독서 리마인더<br/>토글"]
+    NotificationSettings --> GoalAlert["목표 달성 알림<br/>토글"]
 
-    DisplaySettings --> DarkMode[다크 모드<br/>토글]
-    DisplaySettings --> TextSize[텍스트 크기<br/>선택]
+    DisplaySettings --> DarkMode["다크 모드<br/>토글"]
+    DisplaySettings --> TextSize["텍스트 크기<br/>선택"]
 
     AccountSettings --> ChangePassword[비밀번호 변경]
     AccountSettings --> DataBackup[데이터 백업]
@@ -388,13 +388,13 @@ flowchart TD
     BackupConfirm --> DoBackup[백업 실행]
     DoBackup --> BackupComplete[백업 완료]
 
-    DeleteAccount --> DeleteConfirm{정말 삭제<br/>하시겠습니까?}
+    DeleteAccount --> DeleteConfirm{"정말 삭제<br/>하시겠습니까?"}
     DeleteConfirm --> |예| DoDelete[계정 삭제 실행]
     DeleteConfirm --> |아니오| Settings
     DoDelete --> DeleteComplete[삭제 완료]
     DeleteComplete --> Login[로그인 화면]
 
-    LogoutMenu --> LogoutConfirm{로그아웃<br/>하시겠습니까?}
+    LogoutMenu --> LogoutConfirm{"로그아웃<br/>하시겠습니까?"}
     LogoutConfirm --> |예| DoLogout[로그아웃 실행]
     LogoutConfirm --> |아니오| ProfileTab
     DoLogout --> Login
