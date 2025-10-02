@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📊 독서 앱 플로우 차트</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <link rel="stylesheet" href="css/flowchart.css">
 </head>
 <body>
@@ -12,227 +13,437 @@
             <a href="index.html" class="back-button">← 홈으로</a>
             <h1>🔄 인터랙티브 플로우 차트</h1>
             <div class="controls">
+                <button id="fullscreenBtn" class="control-btn">전체화면</button>
                 <button id="resetBtn" class="control-btn">초기화</button>
-                <button id="zoomInBtn" class="control-btn">+</button>
-                <button id="zoomOutBtn" class="control-btn">-</button>
             </div>
         </header>
 
         <div class="legend">
             <div class="legend-item">
-                <div class="legend-color start"></div>
-                <span>시작점</span>
+                <div class="legend-box start"></div>
+                <span>시작/종료</span>
             </div>
             <div class="legend-item">
-                <div class="legend-color screen"></div>
+                <div class="legend-box screen"></div>
                 <span>화면</span>
             </div>
             <div class="legend-item">
-                <div class="legend-color action"></div>
-                <span>사용자 액션</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color decision"></div>
+                <div class="legend-box decision"></div>
                 <span>분기점</span>
             </div>
-        </div>
-
-        <div class="flowchart-wrapper">
-            <div id="flowchart" class="flowchart">
-                <!-- 앱 시작 -->
-                <div class="node start" data-id="app-start" style="top: 20px; left: 50%;">
-                    <div class="node-content">앱 시작</div>
-                </div>
-                <div class="connector" data-from="app-start" data-to="login"></div>
-
-                <!-- 로그인 화면 -->
-                <div class="node screen" data-id="login" style="top: 120px; left: 50%;">
-                    <div class="node-content">로그인 화면</div>
-                </div>
-                <div class="connector" data-from="login" data-to="signup"></div>
-                <div class="connector" data-from="login" data-to="find-account"></div>
-                <div class="connector" data-from="login" data-to="login-success"></div>
-
-                <!-- 회원가입 -->
-                <div class="node action" data-id="signup" style="top: 220px; left: 20%;">
-                    <div class="node-content">회원가입</div>
-                </div>
-                <div class="connector reverse" data-from="signup" data-to="login"></div>
-
-                <!-- 계정 찾기 -->
-                <div class="node action" data-id="find-account" style="top: 220px; left: 80%;">
-                    <div class="node-content">아이디/비밀번호 찾기</div>
-                </div>
-                <div class="connector reverse" data-from="find-account" data-to="login"></div>
-
-                <!-- 로그인 성공 -->
-                <div class="node decision" data-id="login-success" style="top: 320px; left: 50%;">
-                    <div class="node-content">로그인 성공</div>
-                </div>
-                <div class="connector" data-from="login-success" data-to="main-tabs"></div>
-
-                <!-- 메인 탭바 -->
-                <div class="node screen highlight" data-id="main-tabs" style="top: 420px; left: 50%;">
-                    <div class="node-content">메인 화면<br><small>(홈/검색/위시리스트/프로필)</small></div>
-                </div>
-                <div class="connector" data-from="main-tabs" data-to="home-tab"></div>
-                <div class="connector" data-from="main-tabs" data-to="search-tab"></div>
-                <div class="connector" data-from="main-tabs" data-to="wishlist-tab"></div>
-                <div class="connector" data-from="main-tabs" data-to="profile-tab"></div>
-
-                <!-- 홈 탭 -->
-                <div class="node screen" data-id="home-tab" style="top: 560px; left: 15%;">
-                    <div class="node-content">홈 탭</div>
-                </div>
-                <div class="connector" data-from="home-tab" data-to="reading-books"></div>
-                <div class="connector" data-from="home-tab" data-to="finished-books"></div>
-
-                <!-- 읽고 있는 책 -->
-                <div class="node decision" data-id="reading-books" style="top: 680px; left: 10%;">
-                    <div class="node-content">읽고 있는 책</div>
-                </div>
-                <div class="connector" data-from="reading-books" data-to="no-reading"></div>
-                <div class="connector" data-from="reading-books" data-to="reading-record"></div>
-
-                <div class="node action" data-id="no-reading" style="top: 780px; left: 5%;">
-                    <div class="node-content">등록 버튼</div>
-                </div>
-                <div class="connector" data-from="no-reading" data-to="book-search"></div>
-
-                <div class="node screen" data-id="reading-record" style="top: 780px; left: 15%;">
-                    <div class="node-content">독서 기록 화면</div>
-                </div>
-                <div class="connector" data-from="reading-record" data-to="record-type"></div>
-
-                <div class="node decision" data-id="record-type" style="top: 880px; left: 15%;">
-                    <div class="node-content">기록 유형</div>
-                </div>
-                <div class="connector" data-from="record-type" data-to="normal-record"></div>
-                <div class="connector" data-from="record-type" data-to="complete-record"></div>
-
-                <div class="node action" data-id="normal-record" style="top: 980px; left: 10%;">
-                    <div class="node-content">일반 기록<br><small>(진행 중)</small></div>
-                </div>
-                <div class="connector" data-from="normal-record" data-to="home-tab"></div>
-
-                <div class="node action" data-id="complete-record" style="top: 980px; left: 20%;">
-                    <div class="node-content">완독 기록<br><small>(평점/감상)</small></div>
-                </div>
-                <div class="connector" data-from="complete-record" data-to="congrats"></div>
-
-                <div class="node screen" data-id="congrats" style="top: 1080px; left: 20%;">
-                    <div class="node-content">축하 메시지</div>
-                </div>
-                <div class="connector" data-from="congrats" data-to="home-tab"></div>
-
-                <!-- 다 읽은 책 -->
-                <div class="node decision" data-id="finished-books" style="top: 680px; left: 20%;">
-                    <div class="node-content">다 읽은 책</div>
-                </div>
-                <div class="connector" data-from="finished-books" data-to="finished-list"></div>
-
-                <div class="node screen" data-id="finished-list" style="top: 780px; left: 25%;">
-                    <div class="node-content">다 읽은 책 리스트</div>
-                </div>
-                <div class="connector" data-from="finished-list" data-to="record-detail"></div>
-
-                <div class="node screen" data-id="record-detail" style="top: 880px; left: 25%;">
-                    <div class="node-content">독서 기록 상세</div>
-                </div>
-                <div class="connector" data-from="record-detail" data-to="record-actions"></div>
-
-                <div class="node action" data-id="record-actions" style="top: 980px; left: 30%;">
-                    <div class="node-content">기록 보기/수정/삭제<br>다시 읽기/공유</div>
-                </div>
-
-                <!-- 검색 탭 -->
-                <div class="node screen" data-id="search-tab" style="top: 560px; left: 40%;">
-                    <div class="node-content">검색 탭</div>
-                </div>
-                <div class="connector" data-from="search-tab" data-to="before-search"></div>
-                <div class="connector" data-from="search-tab" data-to="book-search"></div>
-
-                <div class="node screen" data-id="before-search" style="top: 680px; left: 35%;">
-                    <div class="node-content">검색 전 상태<br><small>(인기/추천 책)</small></div>
-                </div>
-
-                <div class="node action" data-id="book-search" style="top: 680px; left: 45%;">
-                    <div class="node-content">책 검색<br><small>(텍스트/바코드)</small></div>
-                </div>
-                <div class="connector" data-from="book-search" data-to="search-result"></div>
-
-                <div class="node screen" data-id="search-result" style="top: 780px; left: 45%;">
-                    <div class="node-content">검색 결과 리스트</div>
-                </div>
-                <div class="connector" data-from="search-result" data-to="book-detail"></div>
-
-                <div class="node screen" data-id="book-detail" style="top: 880px; left: 45%;">
-                    <div class="node-content">책 상세 정보</div>
-                </div>
-                <div class="connector" data-from="book-detail" data-to="book-actions"></div>
-
-                <div class="node action" data-id="book-actions" style="top: 980px; left: 45%;">
-                    <div class="node-content">읽는 책 등록 /<br>위시리스트 추가</div>
-                </div>
-                <div class="connector" data-from="book-actions" data-to="home-tab"></div>
-                <div class="connector" data-from="book-actions" data-to="wishlist-tab"></div>
-
-                <!-- 위시리스트 탭 -->
-                <div class="node screen" data-id="wishlist-tab" style="top: 560px; left: 65%;">
-                    <div class="node-content">위시리스트 탭</div>
-                </div>
-                <div class="connector" data-from="wishlist-tab" data-to="wishlist-state"></div>
-
-                <div class="node decision" data-id="wishlist-state" style="top: 680px; left: 65%;">
-                    <div class="node-content">위시리스트 상태</div>
-                </div>
-                <div class="connector" data-from="wishlist-state" data-to="empty-wishlist"></div>
-                <div class="connector" data-from="wishlist-state" data-to="wishlist-book"></div>
-
-                <div class="node action" data-id="empty-wishlist" style="top: 780px; left: 60%;">
-                    <div class="node-content">빈 상태<br><small>(검색 탭 안내)</small></div>
-                </div>
-                <div class="connector" data-from="empty-wishlist" data-to="search-tab"></div>
-
-                <div class="node action" data-id="wishlist-book" style="top: 780px; left: 70%;">
-                    <div class="node-content">책 선택</div>
-                </div>
-                <div class="connector" data-from="wishlist-book" data-to="book-detail"></div>
-
-                <!-- 프로필 탭 -->
-                <div class="node screen" data-id="profile-tab" style="top: 560px; left: 85%;">
-                    <div class="node-content">프로필 탭</div>
-                </div>
-                <div class="connector" data-from="profile-tab" data-to="profile-info"></div>
-                <div class="connector" data-from="profile-tab" data-to="reading-stats"></div>
-                <div class="connector" data-from="profile-tab" data-to="settings"></div>
-                <div class="connector" data-from="profile-tab" data-to="logout"></div>
-
-                <div class="node action" data-id="profile-info" style="top: 680px; left: 75%;">
-                    <div class="node-content">사용자 정보<br><small>(프로필 편집)</small></div>
-                </div>
-
-                <div class="node action" data-id="reading-stats" style="top: 780px; left: 80%;">
-                    <div class="node-content">독서 통계<br><small>(올해/총/평균)</small></div>
-                </div>
-
-                <div class="node action" data-id="settings" style="top: 880px; left: 85%;">
-                    <div class="node-content">설정<br><small>(알림/테마/계정)</small></div>
-                </div>
-
-                <div class="node action" data-id="logout" style="top: 980px; left: 90%;">
-                    <div class="node-content">로그아웃</div>
-                </div>
-                <div class="connector" data-from="logout" data-to="login"></div>
+            <div class="legend-item">
+                <div class="legend-box action"></div>
+                <span>액션</span>
             </div>
         </div>
 
-        <div class="info-panel">
-            <h3>선택된 노드</h3>
-            <div id="nodeInfo" class="node-info">
-                노드를 클릭하여 상세 정보를 확인하세요.
-            </div>
+        <div class="tabs">
+            <button class="tab-btn active" data-chart="main">전체 플로우</button>
+            <button class="tab-btn" data-chart="auth">인증</button>
+            <button class="tab-btn" data-chart="home">홈</button>
+            <button class="tab-btn" data-chart="search">검색</button>
+            <button class="tab-btn" data-chart="wishlist">위시리스트</button>
+            <button class="tab-btn" data-chart="profile">프로필</button>
         </div>
+
+        <main class="main-content">
+            <div class="chart-container">
+                <div id="chart-main" class="mermaid-chart active">
+flowchart TD
+    Start([앱 시작]) --> Login[로그인 화면]
+
+    Login --> |회원가입| Signup[회원가입]
+    Login --> |계정 찾기| FindAccount[아이디/비밀번호 찾기]
+    Login --> |로그인 성공| MainTabs
+
+    Signup --> |완료| Login
+    FindAccount --> |완료| Login
+
+    MainTabs{메인 화면<br/>탭바} --> HomeTab[홈 탭]
+    MainTabs --> SearchTab[검색 탭]
+    MainTabs --> WishlistTab[위시리스트 탭]
+    MainTabs --> ProfileTab[프로필 탭]
+
+    %% 홈 탭 플로우
+    HomeTab --> ReadingBooks{읽고 있는 책<br/>있음?}
+    ReadingBooks --> |없음| AddBook[등록 버튼]
+    ReadingBooks --> |있음| ReadingRecord[독서 기록 화면]
+
+    AddBook --> BookSearch
+
+    ReadingRecord --> RecordType{현재 페이지 =<br/>마지막 페이지?}
+    RecordType --> |진행 중| NormalRecord[일반 기록 저장]
+    RecordType --> |완독| CompleteRecord[완독 기록<br/>평점/감상]
+
+    NormalRecord --> HomeTab
+    CompleteRecord --> Congrats[축하 메시지]
+    Congrats --> HomeTab
+
+    HomeTab --> FinishedBooks[다 읽은 책]
+    FinishedBooks --> FinishedList[다 읽은 책 리스트]
+    FinishedList --> RecordDetail[독서 기록 상세]
+    RecordDetail --> RecordActions[보기/수정/삭제<br/>다시읽기/공유]
+
+    %% 검색 탭 플로우
+    SearchTab --> SearchState{검색 상태}
+    SearchState --> |검색 전| BeforeSearch[인기/추천 책 표시]
+    SearchState --> |검색| BookSearch[책 검색<br/>텍스트/바코드]
+
+    BookSearch --> SearchResult[검색 결과 리스트]
+    SearchResult --> BookDetail[책 상세 정보]
+    BookDetail --> BookActions{액션 선택}
+
+    BookActions --> |읽기 시작| AddReading[읽는 책 등록]
+    BookActions --> |위시리스트| AddWishlist[위시리스트 추가]
+
+    AddReading --> HomeTab
+    AddWishlist --> WishlistTab
+
+    %% 위시리스트 탭 플로우
+    WishlistTab --> WishlistState{위시리스트<br/>있음?}
+    WishlistState --> |없음| EmptyWishlist[빈 상태<br/>검색 안내]
+    WishlistState --> |있음| WishlistBooks[위시리스트 목록]
+
+    EmptyWishlist --> SearchTab
+    WishlistBooks --> BookDetail
+
+    %% 프로필 탭 플로우
+    ProfileTab --> ProfileMenu{메뉴 선택}
+    ProfileMenu --> ProfileInfo[사용자 정보<br/>프로필 편집]
+    ProfileMenu --> ReadingStats[독서 통계]
+    ProfileMenu --> Settings[설정<br/>알림/테마/계정]
+    ProfileMenu --> Logout[로그아웃]
+
+    Logout --> Login
+
+    style Start fill:#34C759,stroke:#2fb34a,color:#fff
+    style Login fill:#007AFF,stroke:#0051d5,color:#fff
+    style Signup fill:#007AFF,stroke:#0051d5,color:#fff
+    style FindAccount fill:#007AFF,stroke:#0051d5,color:#fff
+    style MainTabs fill:#5856D6,stroke:#4840b8,color:#fff
+    style HomeTab fill:#007AFF,stroke:#0051d5,color:#fff
+    style SearchTab fill:#007AFF,stroke:#0051d5,color:#fff
+    style WishlistTab fill:#007AFF,stroke:#0051d5,color:#fff
+    style ProfileTab fill:#007AFF,stroke:#0051d5,color:#fff
+    style ReadingBooks fill:#5856D6,stroke:#4840b8,color:#fff
+    style RecordType fill:#5856D6,stroke:#4840b8,color:#fff
+    style SearchState fill:#5856D6,stroke:#4840b8,color:#fff
+    style BookActions fill:#5856D6,stroke:#4840b8,color:#fff
+    style WishlistState fill:#5856D6,stroke:#4840b8,color:#fff
+    style ProfileMenu fill:#5856D6,stroke:#4840b8,color:#fff
+    style Congrats fill:#34C759,stroke:#2fb34a,color:#fff
+    style Logout fill:#FF3B30,stroke:#d62f26,color:#fff
+                </div>
+
+                <div id="chart-auth" class="mermaid-chart">
+flowchart TD
+    Start([앱 시작]) --> Login[로그인 화면]
+
+    Login --> |이메일/비밀번호 입력| LoginForm[로그인 폼]
+    Login --> |회원가입 클릭| Signup[회원가입 화면]
+    Login --> |계정 찾기 클릭| FindAccount[계정 찾기 화면]
+
+    LoginForm --> |로그인 버튼| ValidateLogin{인증 확인}
+    ValidateLogin --> |성공| MainTabs[메인 화면]
+    ValidateLogin --> |실패| LoginError[에러 메시지]
+    LoginError --> Login
+
+    Signup --> |정보 입력| SignupForm[회원가입 폼<br/>이메일/비밀번호/닉네임]
+    SignupForm --> |가입하기| ValidateSignup{유효성 검사}
+    ValidateSignup --> |성공| SignupSuccess[가입 완료]
+    ValidateSignup --> |실패| SignupError[에러 메시지]
+
+    SignupSuccess --> Login
+    SignupError --> Signup
+
+    FindAccount --> |이메일 입력| FindForm[이메일 입력 폼]
+    FindForm --> |인증 이메일 받기| SendEmail[인증 이메일 발송]
+    SendEmail --> EmailSent[발송 완료 메시지]
+    EmailSent --> Login
+
+    style Start fill:#34C759,stroke:#2fb34a,color:#fff
+    style Login fill:#007AFF,stroke:#0051d5,color:#fff
+    style Signup fill:#007AFF,stroke:#0051d5,color:#fff
+    style FindAccount fill:#007AFF,stroke:#0051d5,color:#fff
+    style MainTabs fill:#34C759,stroke:#2fb34a,color:#fff
+    style ValidateLogin fill:#5856D6,stroke:#4840b8,color:#fff
+    style ValidateSignup fill:#5856D6,stroke:#4840b8,color:#fff
+    style LoginError fill:#FF3B30,stroke:#d62f26,color:#fff
+    style SignupError fill:#FF3B30,stroke:#d62f26,color:#fff
+    style SignupSuccess fill:#34C759,stroke:#2fb34a,color:#fff
+                </div>
+
+                <div id="chart-home" class="mermaid-chart">
+flowchart TD
+    HomeTab([홈 탭]) --> ReadingSection[읽고 있는 책 섹션]
+    HomeTab --> FinishedSection[다 읽은 책 섹션]
+
+    ReadingSection --> HasReading{책이<br/>있음?}
+    HasReading --> |없음| NoReading[등록 버튼 표시]
+    HasReading --> |있음| ShowReading[책 정보 표시<br/>표지/제목/진행률]
+
+    NoReading --> |클릭| GoSearch[검색 화면으로 이동]
+    ShowReading --> |클릭| ReadingRecord[독서 기록 화면]
+
+    ReadingRecord --> CurrentPage[현재 페이지 입력]
+    ReadingRecord --> Memo[메모 작성]
+
+    CurrentPage --> CheckComplete{현재 페이지 =<br/>마지막 페이지?}
+    CheckComplete --> |아니오| SaveNormal[일반 기록 저장]
+    CheckComplete --> |예| CompleteFlow[완독 플로우]
+
+    SaveNormal --> UpdateHome[홈 화면 갱신]
+    UpdateHome --> HomeTab
+
+    CompleteFlow --> CompleteRecord[완독 기록 화면]
+    CompleteRecord --> Rating[평점 입력<br/>1-5점]
+    CompleteRecord --> StartDate[독서 시작일]
+    CompleteRecord --> EndDate[독서 완료일]
+    CompleteRecord --> Review[감상평 작성]
+
+    Rating --> SaveComplete[완독 기록 저장]
+    StartDate --> SaveComplete
+    EndDate --> SaveComplete
+    Review --> SaveComplete
+
+    SaveComplete --> Congrats[축하 메시지<br/>애니메이션]
+    Congrats --> MoveToFinished[다 읽은 책으로 이동]
+    MoveToFinished --> HomeTab
+
+    FinishedSection --> ShowPreview[미리보기<br/>4-5권 표시]
+    ShowPreview --> |전체 보기 클릭| FinishedList[다 읽은 책<br/>전체 리스트]
+    ShowPreview --> |책 클릭| RecordDetail
+
+    FinishedList --> |책 클릭| RecordDetail[독서 기록 상세]
+
+    RecordDetail --> ShowInfo[책 정보 표시]
+    RecordDetail --> ShowRating[평점/감상평]
+    RecordDetail --> ShowRecords[독서 기록 목록<br/>시간순 정렬]
+
+    ShowRecords --> RecordActions{액션 선택}
+    RecordActions --> |수정| EditRecord[기록 수정]
+    RecordActions --> |삭제| DeleteRecord[기록 삭제]
+    RecordActions --> |다시 읽기| ReRead[읽는 책으로 재등록]
+    RecordActions --> |공유| Share[공유하기]
+
+    EditRecord --> RecordDetail
+    DeleteRecord --> FinishedList
+    ReRead --> HomeTab
+
+    style HomeTab fill:#34C759,stroke:#2fb34a,color:#fff
+    style HasReading fill:#5856D6,stroke:#4840b8,color:#fff
+    style CheckComplete fill:#5856D6,stroke:#4840b8,color:#fff
+    style RecordActions fill:#5856D6,stroke:#4840b8,color:#fff
+    style Congrats fill:#FF9500,stroke:#e68600,color:#fff
+    style SaveComplete fill:#34C759,stroke:#2fb34a,color:#fff
+                </div>
+
+                <div id="chart-search" class="mermaid-chart">
+flowchart TD
+    SearchTab([검색 탭]) --> SearchBar[검색 바]
+    SearchTab --> InitialView[초기 화면]
+
+    InitialView --> PopularBooks[인기 책 목록<br/>가로 스크롤]
+    InitialView --> RecommendBooks[추천 책 목록<br/>리스트 형태]
+
+    PopularBooks --> |책 클릭| BookDetail
+    RecommendBooks --> |책 클릭| BookDetail
+
+    SearchBar --> SearchMethod{검색 방법}
+    SearchMethod --> |텍스트| TextSearch[텍스트 입력<br/>제목/저자/ISBN]
+    SearchMethod --> |바코드| BarcodeSearch[카메라 실행<br/>바코드 스캔]
+
+    TextSearch --> |검색 버튼| DoSearch[API 검색 실행]
+    BarcodeSearch --> |스캔 완료| DoSearch
+
+    DoSearch --> HasResult{검색 결과<br/>있음?}
+    HasResult --> |있음| SearchResult[검색 결과 리스트<br/>책 목록 표시]
+    HasResult --> |없음| NoResult[결과 없음 메시지]
+
+    NoResult --> SearchTab
+
+    SearchResult --> ResultCount[결과 개수 표시]
+    SearchResult --> |책 클릭| BookDetail[책 상세 정보]
+
+    BookDetail --> BookInfo[책 정보 표시]
+    BookInfo --> Cover[표지 이미지]
+    BookInfo --> Title[제목/저자]
+    BookInfo --> Publisher[출판사/출판일]
+    BookInfo --> Pages[페이지 수]
+    BookInfo --> ISBN[ISBN]
+    BookInfo --> Description[책 소개]
+
+    BookDetail --> ActionButtons{액션 버튼}
+    ActionButtons --> |읽기 시작| AddToReading[읽는 책으로 등록]
+    ActionButtons --> |위시리스트| AddToWishlist[위시리스트에 추가]
+
+    AddToReading --> ConfirmReading[등록 완료 토스트]
+    AddToWishlist --> ConfirmWishlist[추가 완료 토스트]
+
+    ConfirmReading --> GoHome[홈 탭으로 이동]
+    ConfirmWishlist --> GoWishlist[위시리스트 탭으로 이동]
+
+    style SearchTab fill:#34C759,stroke:#2fb34a,color:#fff
+    style SearchMethod fill:#5856D6,stroke:#4840b8,color:#fff
+    style HasResult fill:#5856D6,stroke:#4840b8,color:#fff
+    style ActionButtons fill:#5856D6,stroke:#4840b8,color:#fff
+    style ConfirmReading fill:#34C759,stroke:#2fb34a,color:#fff
+    style ConfirmWishlist fill:#34C759,stroke:#2fb34a,color:#fff
+    style NoResult fill:#FF9500,stroke:#e68600,color:#fff
+                </div>
+
+                <div id="chart-wishlist" class="mermaid-chart">
+flowchart TD
+    WishlistTab([위시리스트 탭]) --> CheckList{리스트<br/>있음?}
+
+    CheckList --> |없음| EmptyState[빈 상태 화면]
+    CheckList --> |있음| WishlistView[위시리스트 화면]
+
+    EmptyState --> EmptyIcon[빈 아이콘 표시<br/>⭐]
+    EmptyState --> EmptyMessage[안내 메시지<br/>'읽고 싶은 책을<br/>추가해보세요']
+    EmptyState --> SearchButton[책 검색하기 버튼]
+
+    SearchButton --> GoSearch[검색 탭으로 이동]
+
+    WishlistView --> Count[담은 책 개수 표시]
+    WishlistView --> BookList[책 리스트]
+
+    BookList --> BookCard[책 카드]
+    BookCard --> CardInfo[책 정보<br/>표지/제목/저자/페이지수]
+
+    BookCard --> |클릭| BookDetail[책 상세 정보]
+
+    BookDetail --> DetailInfo[상세 정보 표시]
+    DetailInfo --> Cover[표지]
+    DetailInfo --> Info[제목/저자/출판사]
+    DetailInfo --> Description[책 소개]
+
+    BookDetail --> DetailActions{액션 선택}
+    DetailActions --> |읽기 시작| StartReading[읽는 책으로 등록]
+    DetailActions --> |삭제| RemoveWishlist[위시리스트에서 제거]
+
+    StartReading --> ConfirmStart[등록 완료]
+    RemoveWishlist --> ConfirmRemove[삭제 완료]
+
+    ConfirmStart --> GoHome[홈 탭으로 이동]
+    ConfirmRemove --> WishlistTab
+
+    style WishlistTab fill:#34C759,stroke:#2fb34a,color:#fff
+    style CheckList fill:#5856D6,stroke:#4840b8,color:#fff
+    style DetailActions fill:#5856D6,stroke:#4840b8,color:#fff
+    style EmptyState fill:#FF9500,stroke:#e68600,color:#fff
+    style ConfirmStart fill:#34C759,stroke:#2fb34a,color:#fff
+    style ConfirmRemove fill:#FF3B30,stroke:#d62f26,color:#fff
+                </div>
+
+                <div id="chart-profile" class="mermaid-chart">
+flowchart TD
+    ProfileTab([프로필 탭]) --> UserSection[사용자 정보 섹션]
+    ProfileTab --> StatsSection[독서 통계 섹션]
+    ProfileTab --> MenuSection[메뉴 섹션]
+
+    UserSection --> UserCard[사용자 카드]
+    UserCard --> Avatar[프로필 사진]
+    UserCard --> Name[닉네임]
+    UserCard --> Email[이메일]
+    UserCard --> |클릭| EditProfile[프로필 편집]
+
+    EditProfile --> EditAvatar[사진 변경]
+    EditProfile --> EditName[닉네임 변경]
+    EditProfile --> SaveProfile[저장]
+    SaveProfile --> ProfileTab
+
+    StatsSection --> StatsGrid[통계 그리드]
+    StatsGrid --> YearBooks[올해 읽은 책<br/>개수]
+    StatsGrid --> TotalBooks[총 독서량<br/>누적 개수]
+    StatsGrid --> AvgTime[평균 독서 시간<br/>시간]
+    StatsGrid --> AvgRating[평균 평점<br/>별점]
+
+    MenuSection --> ProfileMenu[프로필 편집]
+    MenuSection --> SettingsMenu[설정]
+    MenuSection --> LogoutMenu[로그아웃]
+
+    ProfileMenu --> EditProfile
+
+    SettingsMenu --> Settings[설정 화면]
+    Settings --> NotificationSettings[알림 설정]
+    Settings --> DisplaySettings[화면 설정]
+    Settings --> AccountSettings[계정 설정]
+
+    NotificationSettings --> ReadingReminder[독서 리마인더<br/>토글]
+    NotificationSettings --> GoalAlert[목표 달성 알림<br/>토글]
+
+    DisplaySettings --> DarkMode[다크 모드<br/>토글]
+    DisplaySettings --> TextSize[텍스트 크기<br/>선택]
+
+    AccountSettings --> ChangePassword[비밀번호 변경]
+    AccountSettings --> DataBackup[데이터 백업]
+    AccountSettings --> DeleteAccount[계정 삭제]
+
+    ChangePassword --> PasswordForm[비밀번호 변경 폼]
+    PasswordForm --> UpdatePassword[비밀번호 업데이트]
+    UpdatePassword --> Settings
+
+    DataBackup --> BackupConfirm[백업 확인]
+    BackupConfirm --> DoBackup[백업 실행]
+    DoBackup --> BackupComplete[백업 완료]
+
+    DeleteAccount --> DeleteConfirm{정말 삭제<br/>하시겠습니까?}
+    DeleteConfirm --> |예| DoDelete[계정 삭제 실행]
+    DeleteConfirm --> |아니오| Settings
+    DoDelete --> DeleteComplete[삭제 완료]
+    DeleteComplete --> Login[로그인 화면]
+
+    LogoutMenu --> LogoutConfirm{로그아웃<br/>하시겠습니까?}
+    LogoutConfirm --> |예| DoLogout[로그아웃 실행]
+    LogoutConfirm --> |아니오| ProfileTab
+    DoLogout --> Login
+
+    style ProfileTab fill:#34C759,stroke:#2fb34a,color:#fff
+    style LogoutConfirm fill:#5856D6,stroke:#4840b8,color:#fff
+    style DeleteConfirm fill:#5856D6,stroke:#4840b8,color:#fff
+    style DoLogout fill:#FF3B30,stroke:#d62f26,color:#fff
+    style DoDelete fill:#FF3B30,stroke:#d62f26,color:#fff
+    style Login fill:#007AFF,stroke:#0051d5,color:#fff
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h3>📖 플로우 차트 가이드</h3>
+                <div class="guide-content">
+                    <div class="guide-section">
+                        <h4>💡 사용 방법</h4>
+                        <ul>
+                            <li>상단 탭을 클릭하여 각 기능별 상세 플로우를 확인하세요</li>
+                            <li>차트는 확대/축소 및 드래그가 가능합니다</li>
+                            <li>노드를 클릭하면 해당 화면의 설명을 볼 수 있습니다</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-section">
+                        <h4>🎨 차트 요소</h4>
+                        <ul>
+                            <li><strong>둥근 사각형:</strong> 시작/종료 지점</li>
+                            <li><strong>사각형:</strong> 일반 화면/액션</li>
+                            <li><strong>다이아몬드:</strong> 조건 분기점</li>
+                            <li><strong>화살표:</strong> 화면 전환 흐름</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-section">
+                        <h4>📱 탭 설명</h4>
+                        <ul>
+                            <li><strong>전체 플로우:</strong> 앱 전체 구조 개요</li>
+                            <li><strong>인증:</strong> 로그인, 회원가입, 계정 찾기</li>
+                            <li><strong>홈:</strong> 독서 기록, 완독 관리</li>
+                            <li><strong>검색:</strong> 책 검색 및 등록</li>
+                            <li><strong>위시리스트:</strong> 읽고 싶은 책 관리</li>
+                            <li><strong>프로필:</strong> 사용자 정보 및 설정</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script src="js/flowchart.js"></script>

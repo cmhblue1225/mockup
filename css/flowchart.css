@@ -77,6 +77,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    font-size: 14px;
 }
 
 .control-btn:hover {
@@ -103,178 +104,160 @@ body {
     font-size: 14px;
 }
 
-.legend-color {
+.legend-box {
     width: 24px;
     height: 24px;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 2px solid var(--border-color);
 }
 
-.legend-color.start { background: #34C759; }
-.legend-color.screen { background: #007AFF; }
-.legend-color.action { background: #FF9500; }
-.legend-color.decision { background: #5856D6; }
+.legend-box.start { background: #34C759; }
+.legend-box.screen { background: #007AFF; }
+.legend-box.decision { background: #5856D6; }
+.legend-box.action { background: #FF9500; }
 
-/* Flowchart */
-.flowchart-wrapper {
+/* Tabs */
+.tabs {
+    background: var(--surface);
+    padding: 12px 40px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: var(--background);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    background: var(--border-color);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Main Content */
+.main-content {
     flex: 1;
-    overflow: auto;
-    padding: 40px;
-    background: linear-gradient(90deg, #f0f0f0 1px, transparent 1px),
-                linear-gradient(#f0f0f0 1px, transparent 1px);
-    background-size: 20px 20px;
+    display: flex;
+    gap: 24px;
+    padding: 24px 40px;
 }
 
-.flowchart {
-    position: relative;
-    min-height: 1200px;
-    min-width: 100%;
-    transform-origin: top left;
-    transition: transform 0.3s ease;
-}
-
-/* Nodes */
-.node {
-    position: absolute;
-    min-width: 150px;
-    padding: 16px 20px;
+/* Chart Container */
+.chart-container {
+    flex: 1;
     background: var(--surface);
     border-radius: 12px;
     box-shadow: var(--shadow);
-    cursor: pointer;
-    transform: translateX(-50%);
-    transition: all 0.3s ease;
-    z-index: 10;
+    padding: 24px;
+    overflow: auto;
+    min-height: 600px;
 }
 
-.node:hover {
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    z-index: 20;
+.mermaid-chart {
+    display: none;
+    min-height: 500px;
 }
 
-.node.active {
-    box-shadow: 0 0 0 3px var(--primary-color);
-    z-index: 30;
-}
-
-.node-content {
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.node-content small {
+.mermaid-chart.active {
     display: block;
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    margin-top: 4px;
-}
-
-/* Node Types */
-.node.start {
-    background: linear-gradient(135deg, #34C759 0%, #30D158 100%);
-    color: white;
-    font-weight: 700;
-}
-
-.node.screen {
-    background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
-    color: white;
-}
-
-.node.action {
-    background: linear-gradient(135deg, #FF9500 0%, #FFCC00 100%);
-    color: white;
-}
-
-.node.decision {
-    background: linear-gradient(135deg, #5856D6 0%, #AF52DE 100%);
-    color: white;
-    border-radius: 50%;
-    min-width: 140px;
-    min-height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.node.highlight {
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.7);
-    }
-    50% {
-        box-shadow: 0 0 0 20px rgba(0, 122, 255, 0);
-    }
-}
-
-/* Connectors */
-.connector {
-    position: absolute;
-    width: 2px;
-    background: var(--primary-color);
-    z-index: 1;
-    opacity: 0.5;
-    transition: all 0.3s ease;
-}
-
-.connector::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: -4px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 8px solid var(--primary-color);
-}
-
-.connector.reverse::after {
-    bottom: auto;
-    top: -6px;
-    border-top: none;
-    border-bottom: 8px solid var(--primary-color);
-}
-
-.connector.active {
-    opacity: 1;
-    background: var(--success-color);
-    width: 4px;
-}
-
-.connector.active::after {
-    border-top-color: var(--success-color);
 }
 
 /* Info Panel */
 .info-panel {
+    width: 320px;
     background: var(--surface);
-    padding: 24px 40px;
-    border-top: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
 }
 
 .info-panel h3 {
     font-size: 18px;
-    margin-bottom: 12px;
+    font-weight: 600;
+    margin-bottom: 16px;
 }
 
-.node-info {
-    padding: 16px;
-    background: var(--background);
-    border-radius: 8px;
+.guide-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.guide-section h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.guide-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.guide-section li {
     font-size: 14px;
     line-height: 1.6;
-    min-height: 60px;
+    color: var(--text-secondary);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+}
+
+.guide-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+/* Mermaid Customization */
+.mermaid-chart svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fullscreen */
+.chart-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    border-radius: 0;
+    max-width: 100%;
+    padding: 40px;
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .info-panel {
+        width: 100%;
+        position: static;
+    }
+}
+
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -291,17 +274,35 @@ body {
         gap: 12px;
     }
 
-    .flowchart-wrapper {
-        padding: 20px;
+    .tabs {
+        padding: 12px 20px;
     }
 
-    .node {
-        min-width: 120px;
-        padding: 12px 16px;
-        font-size: 12px;
+    .main-content {
+        padding: 16px 20px;
+    }
+
+    .chart-container {
+        padding: 16px;
     }
 
     .info-panel {
-        padding: 16px 20px;
+        padding: 16px;
     }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mermaid-chart.active {
+    animation: fadeIn 0.3s ease;
 }
