@@ -3,306 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 독서 관리 앱 - 웹 버전 목업</title>
+    <title>📚 독서 관리 앱 - 웹 버전</title>
     <link rel="stylesheet" href="css/web-mockup.css">
 </head>
 <body>
-    <div class="container">
-        <header class="page-header">
-            <a href="index.html" class="back-button">← 홈으로</a>
-            <h1>🖥 웹 버전 목업</h1>
-            <div class="view-toggle">
-                <button class="toggle-btn active" data-view="desktop">데스크톱</button>
-                <button class="toggle-btn" data-view="tablet">태블릿</button>
-            </div>
-        </header>
-
-        <main class="mockup-container">
-            <div class="browser-frame" id="browserFrame">
-                <div class="browser-header">
-                    <div class="browser-buttons">
-                        <span class="btn-red"></span>
-                        <span class="btn-yellow"></span>
-                        <span class="btn-green"></span>
-                    </div>
-                    <div class="browser-url">
-                        <span>🔒</span>
-                        <span>readowl.app/my-library</span>
-                    </div>
-                    <div class="browser-actions"></div>
-                </div>
-
-                <div class="browser-content">
-                    <!-- Sidebar -->
-                    <aside class="sidebar">
-                        <div class="logo">
-                            <div class="logo-icon">📚</div>
-                            <span class="logo-text">ReadOwl</span>
-                        </div>
-
-                        <nav class="nav-menu">
-                            <a href="#" class="nav-item">
-                                <span class="nav-icon">🏠</span>
-                                <span class="nav-label">홈</span>
-                            </a>
-                            <a href="#" class="nav-item active">
-                                <span class="nav-icon">📖</span>
-                                <span class="nav-label">내 서재</span>
-                            </a>
-                            <a href="#" class="nav-item">
-                                <span class="nav-icon">🛒</span>
-                                <span class="nav-label">서점</span>
-                            </a>
-                            <a href="#" class="nav-item">
-                                <span class="nav-icon">📰</span>
-                                <span class="nav-label">뉴스</span>
-                            </a>
-                        </nav>
-
-                        <div class="continue-reading-widget">
-                            <div class="widget-label">계속 읽기</div>
-                            <div class="widget-book">
-                                <div class="widget-book-cover">
-                                    <div class="book-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📚</div>
-                                </div>
-                                <div class="widget-book-info">
-                                    <div class="widget-book-title">클린 코드</div>
-                                    <div class="widget-book-progress">
-                                        <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 42%;"></div>
-                                        </div>
-                                        <span class="progress-text">42%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-user">
-                                <div class="user-avatar">👤</div>
-                                <span class="user-name">독서러버</span>
-                                <span class="user-icon">›</span>
-                            </div>
-                        </div>
-                    </aside>
-
-                    <!-- Main Content -->
-                    <main class="main-content">
-                        <div class="content-header">
-                            <div class="tabs">
-                                <button class="tab active">책장</button>
-                                <button class="tab">모든 책</button>
-                            </div>
-                            <div class="search-bar">
-                                <span class="search-icon">🔍</span>
-                                <input type="text" placeholder="내 서재에서 검색">
-                            </div>
-                        </div>
-
-                        <div class="content-body">
-                            <!-- Currently Reading Section -->
-                            <section class="book-section">
-                                <h2 class="section-title">읽고 있는 책</h2>
-                                <div class="book-shelf">
-                                    <div class="book-card" onclick="showBookDetail('클린 코드')">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">📖</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">클린 코드</div>
-                                            <div class="book-progress-mini">42%</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card" onclick="showBookDetail('리팩터링')">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">💡</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">리팩터링</div>
-                                            <div class="book-progress-mini">68%</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card" onclick="showBookDetail('오브젝트')">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">🎯</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">오브젝트</div>
-                                            <div class="book-progress-mini">15%</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <!-- Next Up Section -->
-                            <section class="book-section">
-                                <div class="section-header">
-                                    <h2 class="section-title">다음 읽을 책</h2>
-                                    <a href="#" class="section-link">전체 보기 →</a>
-                                </div>
-                                <div class="book-shelf">
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🚀</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">실용주의 프로그래머</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">⚡</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">클린 아키텍처</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">🎨</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">디자인 패턴</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">📚</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">함께 자라기</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">🔥</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">1984</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%);">🎵</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">모두의 딥러닝</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <!-- Finished Section -->
-                            <section class="book-section">
-                                <div class="section-header">
-                                    <h2 class="section-title">다 읽은 책</h2>
-                                    <a href="#" class="section-link">전체 보기 →</a>
-                                </div>
-                                <div class="book-shelf">
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">📚</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">이펙티브 자바</div>
-                                            <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">💡</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">헤드 퍼스트 디자인 패턴</div>
-                                            <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🚀</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">도메인 주도 설계</div>
-                                            <div class="book-rating">⭐⭐⭐⭐</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">⚡</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">테스트 주도 개발</div>
-                                            <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">🎯</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">클린 소프트웨어</div>
-                                            <div class="book-rating">⭐⭐⭐⭐</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="book-card">
-                                        <div class="book-cover">
-                                            <div class="book-placeholder" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">📖</div>
-                                        </div>
-                                        <div class="book-info">
-                                            <div class="book-title">피플웨어</div>
-                                            <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </main>
-                </div>
-            </div>
-
-            <div class="info-panel">
-                <h3>📖 웹 버전 특징</h3>
-                <div class="info-content">
-                    <div class="info-section">
-                        <h4>💡 디자인 특징</h4>
-                        <ul>
-                            <li>사이드바 네비게이션</li>
-                            <li>책장 스타일의 카드 레이아웃</li>
-                            <li>베이지/크림 색상의 따뜻한 배경</li>
-                            <li>계속 읽기 위젯</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-section">
-                        <h4>🎨 인터랙션</h4>
-                        <ul>
-                            <li>책 카드 클릭으로 상세 정보 표시</li>
-                            <li>데스크톱/태블릿 뷰 전환</li>
-                            <li>호버 효과로 시각적 피드백</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-section">
-                        <h4>📱 반응형</h4>
-                        <ul>
-                            <li>데스크톱: 1440px 기준</li>
-                            <li>태블릿: 1024px 기준</li>
-                            <li>자동 레이아웃 조정</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <!-- Top Navigation Bar -->
+    <div class="top-bar">
+        <a href="index.html" class="home-link">← 프로젝트 홈</a>
+        <div class="view-toggle">
+            <button class="toggle-btn active" data-view="desktop">💻 데스크톱</button>
+            <button class="toggle-btn" data-view="tablet">📱 태블릿</button>
+        </div>
     </div>
+
+    <!-- Browser Frame -->
+    <div class="browser-wrapper">
+        <div class="browser-frame" id="browserFrame">
+            <div class="browser-header">
+                <div class="browser-buttons">
+                    <span class="btn-red"></span>
+                    <span class="btn-yellow"></span>
+                    <span class="btn-green"></span>
+                </div>
+                <div class="browser-url">
+                    <span class="lock-icon">🔒</span>
+                    <span class="url-text">readowl.app/my-library</span>
+                </div>
+                <div class="browser-actions">
+                    <span class="action-icon">⚙️</span>
+                </div>
+            </div>
+
+            <div class="app-container">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="logo" onclick="navigateTo('home')">
+                        <div class="logo-icon">📚</div>
+                        <span class="logo-text">ReadOwl</span>
+                    </div>
+
+                    <nav class="nav-menu">
+                        <a href="#" class="nav-item" data-page="home" onclick="navigateTo('home', event)">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-label">홈</span>
+                        </a>
+                        <a href="#" class="nav-item active" data-page="library" onclick="navigateTo('library', event)">
+                            <span class="nav-icon">📖</span>
+                            <span class="nav-label">내 서재</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="shop" onclick="navigateTo('shop', event)">
+                            <span class="nav-icon">🛒</span>
+                            <span class="nav-label">서점</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="news" onclick="navigateTo('news', event)">
+                            <span class="nav-icon">📰</span>
+                            <span class="nav-label">뉴스</span>
+                        </a>
+                    </nav>
+
+                    <div class="continue-reading-widget" onclick="openReadingModal('클린 코드')">
+                        <div class="widget-label">계속 읽기</div>
+                        <div class="widget-book">
+                            <div class="widget-book-cover">
+                                <div class="book-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📚</div>
+                            </div>
+                            <div class="widget-book-info">
+                                <div class="widget-book-title">클린 코드</div>
+                                <div class="widget-book-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 42%;"></div>
+                                    </div>
+                                    <span class="progress-text">42%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-user">
+                            <div class="user-avatar">👤</div>
+                            <span class="user-name">독서러버</span>
+                            <span class="user-icon">›</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content Area -->
+                <main class="main-content" id="mainContent">
+                    <!-- Content will be dynamically loaded here -->
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <script src="js/web-mockup.js"></script>
 </body>
