@@ -373,8 +373,8 @@ section h2 {
 }
 
 .api-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
     gap: 12px;
     margin-bottom: 32px;
 }

@@ -130,13 +130,9 @@
                         </div>
 
                         <div class="api-actions">
-                            <a href="https://lucky-lollipop-31b7e2.netlify.app/apis/api-docs" target="_blank" class="api-button primary">
+                            <a href="https://lucky-lollipop-31b7e2.netlify.app/api-docs" target="_blank" class="api-button primary">
                                 <span>📖</span>
                                 <span>Swagger 문서 보기</span>
-                            </a>
-                            <a href="https://github.com/cmhblue1225/apis" target="_blank" class="api-button secondary">
-                                <span>💻</span>
-                                <span>GitHub 레포지토리</span>
                             </a>
                         </div>
 
@@ -162,7 +158,7 @@
                             <pre><code id="apiCode">// 책 검색 예제
 const searchBooks = async (query) => {
   const response = await fetch(
-    `https://lucky-lollipop-31b7e2.netlify.app/apis/api/books/search?query=${query}`
+    `https://lucky-lollipop-31b7e2.netlify.app/api/books/search?query=${query}`
   );
   const data = await response.json();
   return data;
@@ -179,7 +175,7 @@ searchBooks('클린 코드')
                             <div class="code-header">
                                 <span>cURL</span>
                             </div>
-                            <pre><code>curl "https://lucky-lollipop-31b7e2.netlify.app/apis/api/books/search?query=클린코드"</code></pre>
+                            <pre><code>curl "https://lucky-lollipop-31b7e2.netlify.app/api/books/search?query=클린코드"</code></pre>
                         </div>
                     </div>
                 </div>
