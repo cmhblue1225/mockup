@@ -169,6 +169,11 @@ body {
 .mermaid-chart {
     display: none;
     min-height: 500px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
 }
 
 .mermaid-chart.active {

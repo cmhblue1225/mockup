@@ -1,15 +1,22 @@
 // Initialize Mermaid
 mermaid.initialize({
     startOnLoad: true,
-    theme: 'default',
+    theme: 'base',
+    themeVariables: {
+        primaryColor: '#007AFF',
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#0051d5',
+        lineColor: '#8E8E93',
+        secondaryColor: '#5856D6',
+        tertiaryColor: '#34C759',
+        fontSize: '16px',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+    },
     flowchart: {
         useMaxWidth: true,
         htmlLabels: true,
-        curve: 'basis'
-    },
-    themeVariables: {
-        fontSize: '16px',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+        curve: 'basis',
+        padding: 20
     }
 });
 
@@ -34,8 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Re-render mermaid
-            mermaid.contentLoaded();
+            // Re-render mermaid for the active chart
+            const activeChart = document.querySelector('.mermaid-chart.active');
+            if (activeChart && !activeChart.dataset.processed) {
+                mermaid.run({
+                    nodes: [activeChart]
+                });
+            }
         });
     });
 
@@ -90,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initial render
-    mermaid.contentLoaded();
+    // Initial render - wait for DOM to be fully loaded
+    setTimeout(() => {
+        mermaid.run();
+    }, 100);
 });

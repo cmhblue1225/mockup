@@ -48,7 +48,7 @@
 
         <main class="main-content">
             <div class="chart-container">
-                <div id="chart-main" class="mermaid-chart active">
+                <pre id="chart-main" class="mermaid mermaid-chart active">
 flowchart TD
     Start([앱 시작]) --> Login[로그인 화면]
 
@@ -133,9 +133,9 @@ flowchart TD
     style ProfileMenu fill:#5856D6,stroke:#4840b8,color:#fff
     style Congrats fill:#34C759,stroke:#2fb34a,color:#fff
     style Logout fill:#FF3B30,stroke:#d62f26,color:#fff
-                </div>
+                </pre>
 
-                <div id="chart-auth" class="mermaid-chart">
+                <pre id="chart-auth" class="mermaid mermaid-chart">
 flowchart TD
     Start([앱 시작]) --> Login[로그인 화면]
 
@@ -171,9 +171,9 @@ flowchart TD
     style LoginError fill:#FF3B30,stroke:#d62f26,color:#fff
     style SignupError fill:#FF3B30,stroke:#d62f26,color:#fff
     style SignupSuccess fill:#34C759,stroke:#2fb34a,color:#fff
-                </div>
+                </pre>
 
-                <div id="chart-home" class="mermaid-chart">
+                <pre id="chart-home" class="mermaid mermaid-chart">
 flowchart TD
     HomeTab([홈 탭]) --> ReadingSection[읽고 있는 책 섹션]
     HomeTab --> FinishedSection[다 읽은 책 섹션]
@@ -236,9 +236,9 @@ flowchart TD
     style RecordActions fill:#5856D6,stroke:#4840b8,color:#fff
     style Congrats fill:#FF9500,stroke:#e68600,color:#fff
     style SaveComplete fill:#34C759,stroke:#2fb34a,color:#fff
-                </div>
+                </pre>
 
-                <div id="chart-search" class="mermaid-chart">
+                <pre id="chart-search" class="mermaid mermaid-chart">
 flowchart TD
     SearchTab([검색 탭]) --> SearchBar[검색 바]
     SearchTab --> InitialView[초기 화면]
@@ -290,9 +290,9 @@ flowchart TD
     style ConfirmReading fill:#34C759,stroke:#2fb34a,color:#fff
     style ConfirmWishlist fill:#34C759,stroke:#2fb34a,color:#fff
     style NoResult fill:#FF9500,stroke:#e68600,color:#fff
-                </div>
+                </pre>
 
-                <div id="chart-wishlist" class="mermaid-chart">
+                <pre id="chart-wishlist" class="mermaid mermaid-chart">
 flowchart TD
     WishlistTab([위시리스트 탭]) --> CheckList{리스트<br/>있음?}
 
@@ -334,9 +334,9 @@ flowchart TD
     style EmptyState fill:#FF9500,stroke:#e68600,color:#fff
     style ConfirmStart fill:#34C759,stroke:#2fb34a,color:#fff
     style ConfirmRemove fill:#FF3B30,stroke:#d62f26,color:#fff
-                </div>
+                </pre>
 
-                <div id="chart-profile" class="mermaid-chart">
+                <pre id="chart-profile" class="mermaid mermaid-chart">
 flowchart TD
     ProfileTab([프로필 탭]) --> UserSection[사용자 정보 섹션]
     ProfileTab --> StatsSection[독서 통계 섹션]
@@ -405,7 +405,7 @@ flowchart TD
     style DoLogout fill:#FF3B30,stroke:#d62f26,color:#fff
     style DoDelete fill:#FF3B30,stroke:#d62f26,color:#fff
     style Login fill:#007AFF,stroke:#0051d5,color:#fff
-                </div>
+                </pre>
             </div>
 
             <div class="info-panel">
