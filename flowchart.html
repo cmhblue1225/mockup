@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 독서 앱 플로우 차트</title>
+    <link rel="stylesheet" href="css/flowchart.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="back-button">← 홈으로</a>
+            <h1>🔄 인터랙티브 플로우 차트</h1>
+            <div class="controls">
+                <button id="resetBtn" class="control-btn">초기화</button>
+                <button id="zoomInBtn" class="control-btn">+</button>
+                <button id="zoomOutBtn" class="control-btn">-</button>
+            </div>
+        </header>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color start"></div>
+                <span>시작점</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color screen"></div>
+                <span>화면</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color action"></div>
+                <span>사용자 액션</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color decision"></div>
+                <span>분기점</span>
+            </div>
+        </div>
+
+        <div class="flowchart-wrapper">
+            <div id="flowchart" class="flowchart">
+                <!-- 앱 시작 -->
+                <div class="node start" data-id="app-start" style="top: 20px; left: 50%;">
+                    <div class="node-content">앱 시작</div>
+                </div>
+                <div class="connector" data-from="app-start" data-to="login"></div>
+
+                <!-- 로그인 화면 -->
+                <div class="node screen" data-id="login" style="top: 120px; left: 50%;">
+                    <div class="node-content">로그인 화면</div>
+                </div>
+                <div class="connector" data-from="login" data-to="signup"></div>
+                <div class="connector" data-from="login" data-to="find-account"></div>
+                <div class="connector" data-from="login" data-to="login-success"></div>
+
+                <!-- 회원가입 -->
+                <div class="node action" data-id="signup" style="top: 220px; left: 20%;">
+                    <div class="node-content">회원가입</div>
+                </div>
+                <div class="connector reverse" data-from="signup" data-to="login"></div>
+
+                <!-- 계정 찾기 -->
+                <div class="node action" data-id="find-account" style="top: 220px; left: 80%;">
+                    <div class="node-content">아이디/비밀번호 찾기</div>
+                </div>
+                <div class="connector reverse" data-from="find-account" data-to="login"></div>
+
+                <!-- 로그인 성공 -->
+                <div class="node decision" data-id="login-success" style="top: 320px; left: 50%;">
+                    <div class="node-content">로그인 성공</div>
+                </div>
+                <div class="connector" data-from="login-success" data-to="main-tabs"></div>
+
+                <!-- 메인 탭바 -->
+                <div class="node screen highlight" data-id="main-tabs" style="top: 420px; left: 50%;">
+                    <div class="node-content">메인 화면<br><small>(홈/검색/위시리스트/프로필)</small></div>
+                </div>
+                <div class="connector" data-from="main-tabs" data-to="home-tab"></div>
+                <div class="connector" data-from="main-tabs" data-to="search-tab"></div>
+                <div class="connector" data-from="main-tabs" data-to="wishlist-tab"></div>
+                <div class="connector" data-from="main-tabs" data-to="profile-tab"></div>
+
+                <!-- 홈 탭 -->
+                <div class="node screen" data-id="home-tab" style="top: 560px; left: 15%;">
+                    <div class="node-content">홈 탭</div>
+                </div>
+                <div class="connector" data-from="home-tab" data-to="reading-books"></div>
+                <div class="connector" data-from="home-tab" data-to="finished-books"></div>
+
+                <!-- 읽고 있는 책 -->
+                <div class="node decision" data-id="reading-books" style="top: 680px; left: 10%;">
+                    <div class="node-content">읽고 있는 책</div>
+                </div>
+                <div class="connector" data-from="reading-books" data-to="no-reading"></div>
+                <div class="connector" data-from="reading-books" data-to="reading-record"></div>
+
+                <div class="node action" data-id="no-reading" style="top: 780px; left: 5%;">
+                    <div class="node-content">등록 버튼</div>
+                </div>
+                <div class="connector" data-from="no-reading" data-to="book-search"></div>
+
+                <div class="node screen" data-id="reading-record" style="top: 780px; left: 15%;">
+                    <div class="node-content">독서 기록 화면</div>
+                </div>
+                <div class="connector" data-from="reading-record" data-to="record-type"></div>
+
+                <div class="node decision" data-id="record-type" style="top: 880px; left: 15%;">
+                    <div class="node-content">기록 유형</div>
+                </div>
+                <div class="connector" data-from="record-type" data-to="normal-record"></div>
+                <div class="connector" data-from="record-type" data-to="complete-record"></div>
+
+                <div class="node action" data-id="normal-record" style="top: 980px; left: 10%;">
+                    <div class="node-content">일반 기록<br><small>(진행 중)</small></div>
+                </div>
+                <div class="connector" data-from="normal-record" data-to="home-tab"></div>
+
+                <div class="node action" data-id="complete-record" style="top: 980px; left: 20%;">
+                    <div class="node-content">완독 기록<br><small>(평점/감상)</small></div>
+                </div>
+                <div class="connector" data-from="complete-record" data-to="congrats"></div>
+
+                <div class="node screen" data-id="congrats" style="top: 1080px; left: 20%;">
+                    <div class="node-content">축하 메시지</div>
+                </div>
+                <div class="connector" data-from="congrats" data-to="home-tab"></div>
+
+                <!-- 다 읽은 책 -->
+                <div class="node decision" data-id="finished-books" style="top: 680px; left: 20%;">
+                    <div class="node-content">다 읽은 책</div>
+                </div>
+                <div class="connector" data-from="finished-books" data-to="finished-list"></div>
+
+                <div class="node screen" data-id="finished-list" style="top: 780px; left: 25%;">
+                    <div class="node-content">다 읽은 책 리스트</div>
+                </div>
+                <div class="connector" data-from="finished-list" data-to="record-detail"></div>
+
+                <div class="node screen" data-id="record-detail" style="top: 880px; left: 25%;">
+                    <div class="node-content">독서 기록 상세</div>
+                </div>
+                <div class="connector" data-from="record-detail" data-to="record-actions"></div>
+
+                <div class="node action" data-id="record-actions" style="top: 980px; left: 30%;">
+                    <div class="node-content">기록 보기/수정/삭제<br>다시 읽기/공유</div>
+                </div>
+
+                <!-- 검색 탭 -->
+                <div class="node screen" data-id="search-tab" style="top: 560px; left: 40%;">
+                    <div class="node-content">검색 탭</div>
+                </div>
+                <div class="connector" data-from="search-tab" data-to="before-search"></div>
+                <div class="connector" data-from="search-tab" data-to="book-search"></div>
+
+                <div class="node screen" data-id="before-search" style="top: 680px; left: 35%;">
+                    <div class="node-content">검색 전 상태<br><small>(인기/추천 책)</small></div>
+                </div>
+
+                <div class="node action" data-id="book-search" style="top: 680px; left: 45%;">
+                    <div class="node-content">책 검색<br><small>(텍스트/바코드)</small></div>
+                </div>
+                <div class="connector" data-from="book-search" data-to="search-result"></div>
+
+                <div class="node screen" data-id="search-result" style="top: 780px; left: 45%;">
+                    <div class="node-content">검색 결과 리스트</div>
+                </div>
+                <div class="connector" data-from="search-result" data-to="book-detail"></div>
+
+                <div class="node screen" data-id="book-detail" style="top: 880px; left: 45%;">
+                    <div class="node-content">책 상세 정보</div>
+                </div>
+                <div class="connector" data-from="book-detail" data-to="book-actions"></div>
+
+                <div class="node action" data-id="book-actions" style="top: 980px; left: 45%;">
+                    <div class="node-content">읽는 책 등록 /<br>위시리스트 추가</div>
+                </div>
+                <div class="connector" data-from="book-actions" data-to="home-tab"></div>
+                <div class="connector" data-from="book-actions" data-to="wishlist-tab"></div>
+
+                <!-- 위시리스트 탭 -->
+                <div class="node screen" data-id="wishlist-tab" style="top: 560px; left: 65%;">
+                    <div class="node-content">위시리스트 탭</div>
+                </div>
+                <div class="connector" data-from="wishlist-tab" data-to="wishlist-state"></div>
+
+                <div class="node decision" data-id="wishlist-state" style="top: 680px; left: 65%;">
+                    <div class="node-content">위시리스트 상태</div>
+                </div>
+                <div class="connector" data-from="wishlist-state" data-to="empty-wishlist"></div>
+                <div class="connector" data-from="wishlist-state" data-to="wishlist-book"></div>
+
+                <div class="node action" data-id="empty-wishlist" style="top: 780px; left: 60%;">
+                    <div class="node-content">빈 상태<br><small>(검색 탭 안내)</small></div>
+                </div>
+                <div class="connector" data-from="empty-wishlist" data-to="search-tab"></div>
+
+                <div class="node action" data-id="wishlist-book" style="top: 780px; left: 70%;">
+                    <div class="node-content">책 선택</div>
+                </div>
+                <div class="connector" data-from="wishlist-book" data-to="book-detail"></div>
+
+                <!-- 프로필 탭 -->
+                <div class="node screen" data-id="profile-tab" style="top: 560px; left: 85%;">
+                    <div class="node-content">프로필 탭</div>
+                </div>
+                <div class="connector" data-from="profile-tab" data-to="profile-info"></div>
+                <div class="connector" data-from="profile-tab" data-to="reading-stats"></div>
+                <div class="connector" data-from="profile-tab" data-to="settings"></div>
+                <div class="connector" data-from="profile-tab" data-to="logout"></div>
+
+                <div class="node action" data-id="profile-info" style="top: 680px; left: 75%;">
+                    <div class="node-content">사용자 정보<br><small>(프로필 편집)</small></div>
+                </div>
+
+                <div class="node action" data-id="reading-stats" style="top: 780px; left: 80%;">
+                    <div class="node-content">독서 통계<br><small>(올해/총/평균)</small></div>
+                </div>
+
+                <div class="node action" data-id="settings" style="top: 880px; left: 85%;">
+                    <div class="node-content">설정<br><small>(알림/테마/계정)</small></div>
+                </div>
+
+                <div class="node action" data-id="logout" style="top: 980px; left: 90%;">
+                    <div class="node-content">로그아웃</div>
+                </div>
+                <div class="connector" data-from="logout" data-to="login"></div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <h3>선택된 노드</h3>
+            <div id="nodeInfo" class="node-info">
+                노드를 클릭하여 상세 정보를 확인하세요.
+            </div>
+        </div>
+    </div>
+
+    <script src="js/flowchart.js"></script>
+</body>
+</html>

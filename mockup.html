@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 독서 앱 화면 목업</title>
+    <link rel="stylesheet" href="css/mockup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="back-button">← 홈으로</a>
+            <h1>📱 화면 목업</h1>
+            <div class="screen-selector">
+                <select id="screenSelect">
+                    <option value="login">로그인</option>
+                    <option value="signup">회원가입</option>
+                    <option value="find-account">계정 찾기</option>
+                    <option value="home" selected>홈</option>
+                    <option value="reading-record">독서 기록</option>
+                    <option value="complete-record">완독 기록</option>
+                    <option value="finished-list">다 읽은 책</option>
+                    <option value="record-detail">기록 상세</option>
+                    <option value="search">검색</option>
+                    <option value="search-result">검색 결과</option>
+                    <option value="book-detail">책 상세</option>
+                    <option value="wishlist">위시리스트</option>
+                    <option value="wishlist-empty">위시리스트(빈)</option>
+                    <option value="profile">프로필</option>
+                    <option value="settings">설정</option>
+                </select>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="iphone-frame">
+                <div class="iphone-notch"></div>
+                <div class="iphone-screen" id="screen">
+                    <!-- Screens will be loaded here -->
+                </div>
+                <div class="iphone-home-indicator"></div>
+            </div>
+
+            <div class="info-panel">
+                <h3>화면 정보</h3>
+                <div id="screenInfo"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/mockup.js"></script>
+</body>
+</html>
